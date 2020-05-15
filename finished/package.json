@@ -1,0 +1,35 @@
+{
+    "name": "time-clock",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "serve": "firebase emulators:start --only functions",
+        "shell": "firebase functions:shell",
+        "start": "npm run shell",
+        "deploy": "firebase deploy --only functions",
+        "logs": "firebase functions:log",
+        "test": "firebase emulators:exec --only firestore 'mocha --timeout=10000 test/firestore-tests.js'"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "express": "^4.17.1",
+        "firebase-admin": "^8.12.1",
+        "firebase-functions": "^3.6.1",
+        "moment": "^2.25.3"
+    },
+    "private": true,
+    "devDependencies": {
+        "@firebase/testing": "^0.19.4",
+        "chai": "^4.2.0",
+        "chai-http": "^4.3.0",
+        "mocha": "^7.1.2",
+        "prettier": "^2.0.5"
+    },
+    "engines": {
+        "node": "10"
+    }
+}

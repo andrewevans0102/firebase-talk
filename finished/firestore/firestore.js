@@ -27,20 +27,20 @@ const clockIn = async (db, project, length) => {
     await db
         .collection('clock')
         .doc('/' + length + '/')
-        .set({ clock });
+        .set(clock);
 };
 
 const clockOut = async (db, length) => {
     let document = db.collection('clock').doc(length.toString());
     const documentRetrieved = await document.get();
-    const clock = await documentRetrieved.data().clock;
+    const clock = await documentRetrieved.data();
     clock.clockOut = Date.now();
     const duration = moment.duration(clock.clockOut - clock.clockIn);
     clock.total = `${duration.hours()}:${duration.minutes()}:${duration.seconds()}`;
     await db
         .collection('clock')
         .doc('/' + length + '/')
-        .update({ clock });
+        .update(clock);
     return clock;
 };
 
@@ -50,7 +50,7 @@ const selectAll = async (db) => {
         let docs = querySnapshot.docs;
         let response = [];
         for (let doc of docs) {
-            const clock = doc.data().clock;
+            const clock = doc.data();
             response.push(clock);
         }
         return response;
